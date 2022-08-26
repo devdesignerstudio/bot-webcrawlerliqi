@@ -61,7 +61,7 @@ function calcSpread(ask, bid){
       // bot.hears('ask', (ctx) => ctx.reply(`Melhor Compra: ${data.ask}`) );
       // bot.hears('bid', (ctx) => ctx.reply(`Melhor Venda: ${data.bid}`) );
       // if ( calcSpread(data.ask,data.bid) > 350 )
-      // bot.telegram.sendMessage(process.env.CHAT_ID,`Spread: R$ ${calcSpread(data.ask,data.bid).replace('.',',')} \nMelhor Compra: ${data.ask} \nMelhor Venda: ${data.bid}`);
+      bot.telegram.sendMessage(process.env.CHAT_ID,`Spread: R$ ${calcSpread(data.ask,data.bid).replace('.',',')} \nMelhor Compra: ${data.ask} \nMelhor Venda: ${data.bid}`);
       if ( calcSpread(data.ask,data.bid) > 50000 ){
       bot.telegram.sendMessage(process.env.CHAT_ID,`Spread: R$ ${calcSpread(data.ask,data.bid).replace('.',',')} \nMelhor Compra: ${data.ask} \nMelhor Venda: ${data.bid} \nOportunidade Imperdível !!! Acesse agora https://www.liqi.com.br/exchange`)
       }
