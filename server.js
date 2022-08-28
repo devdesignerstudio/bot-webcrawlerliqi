@@ -1,6 +1,17 @@
 const puppeteer = require('puppeteer');
 const { Telegraf } = require('telegraf');
 
+const express = require('express');
+const app = express();
+
+const ip = process.env.IP || '0.0.0.0';
+const port = process.env.PORT || 8080;
+
+//Catches requests made to localhost:3000/
+app.get('/', (req, res) => res.send('Hello World!'));
+//Initialises the express server on the port 30000
+app.listen(port, ip);
+
 // const bot = new Telegraf(process.env.BOT_TOKEN)
 const bot = new Telegraf(process.env.BOT_TOKEN);
 // bot.telegram.sendMessage(process.env.CHAT_ID,'Bem-vindo(a) ao Bot de Alertas - Liqi Exchange!');
@@ -26,6 +37,16 @@ function calcSpread(ask, bid){
   const page = await browser.newPage();
   const proxy = 'https://cors-anywhere.herokuapp.com/';
   const url = 'https://www.liqi.com.br/exchange';
+
+//turns request interceptor on
+await page.setRequestInterception(true);
+//if the page makes a  request to a resource type of image then abort that request
+page.on('request', request => {
+  if (request.resourceType() === 'image' || request.resourceType() === 'stylesheet')
+    request.abort();
+  else
+    request.continue();
+});
   await page.goto(url);
   // Pegar último preço do Bitcoin na página da Liqi
   
