@@ -33,7 +33,10 @@ function calcSpread(ask, bid){
 }
 
    async function webcrawler() {
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });// slow down by 1000ms
+    
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });  
   const page = await browser.newPage();
   const proxy = 'https://cors-anywhere.herokuapp.com/';
   const url = 'https://www.liqi.com.br/exchange';
