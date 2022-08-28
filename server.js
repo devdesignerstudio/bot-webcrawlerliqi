@@ -33,7 +33,7 @@ function calcSpread(ask, bid){
 }
 
    async function webcrawler() {
-    
+
   const browser = await puppeteer.launch({
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });  
@@ -85,7 +85,6 @@ page.on('request', request => {
       // bot.hears('ask', (ctx) => ctx.reply(`Melhor Compra: ${data.ask}`) );
       // bot.hears('bid', (ctx) => ctx.reply(`Melhor Venda: ${data.bid}`) );
       // if ( calcSpread(data.ask,data.bid) > 350 )
-      bot.telegram.sendMessage(process.env.CHAT_ID,`Spread: R$ ${calcSpread(data.ask,data.bid).replace('.',',')} \nMelhor Compra: ${data.ask} \nMelhor Venda: ${data.bid}`);
       if ( calcSpread(data.ask,data.bid) > 50000 ){
       bot.telegram.sendMessage(process.env.CHAT_ID,`Spread: R$ ${calcSpread(data.ask,data.bid).replace('.',',')} \nMelhor Compra: ${data.ask} \nMelhor Venda: ${data.bid} \nOportunidade Imperdível !!! Acesse agora ${url}`)
       }
