@@ -15,7 +15,7 @@ app.listen(port, ip);
 // const bot = new Telegraf(process.env.BOT_TOKEN)
 const bot = new Telegraf(process.env.BOT_TOKEN);
 // bot.telegram.sendMessage(process.env.CHAT_ID,'Bem-vindo(a) ao Bot de Alertas - Liqi Exchange!');
-bot.telegram.sendMessage(process.env.CHAT_ID,'Bem-vindo(a) ao Bot de Alertas - Liqi Exchange!');
+// bot.telegram.sendMessage(process.env.CHAT_ID,'Bem-vindo(a) ao Bot de Alertas - Liqi Exchange!');
 // bot.start((ctx) => ctx.reply())
 // bot.help((ctx) => ctx.reply('Comprar agora!'))
 // bot.on('sticker', (ctx) => ctx.reply('👍'))
