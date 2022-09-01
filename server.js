@@ -58,9 +58,11 @@ page.on('request', request => {
       //toda essa função será executada no browser
       // setTimeout(console.log("Aguardando o carregamento da página...") ,10000)
       const spanSpread = document.querySelector("#__next > div.styles__Container-sc-18h7krm-0.beooTR > div.styles__Grid-sc-1ymowfn-0.iSncTr > div.styles__Box-sc-1ymowfn-1.iBCcqr > div.styles__Container-sc-ks5aup-0.giHJhQ > div.list__ListsGrid-sc-gt4k6k-0.cmjsPA > span > span > span")
-      const spanAsk = document.querySelector("#__next > div.styles__Container-sc-18h7krm-0.beooTR > div.styles__Grid-sc-1ymowfn-0.iSncTr > div.styles__Box-sc-1ymowfn-1.cbiTXp > div.styles__Container-sc-1eazm0o-0.bqplEK > div > div > div:nth-child(1) > form > div.styles__Resume-sc-1eazm0o-16.gkfRZt > ul.styles__ResumeGroup-sc-1eazm0o-17.fIJSGF > li.styles__ResumeItem-sc-1eazm0o-18.fipdGk > div:nth-child(2) > p > span")
-      const spanBid = document.querySelector("#__next > div.styles__Container-sc-18h7krm-0.beooTR > div.styles__Grid-sc-1ymowfn-0.iSncTr > div.styles__Box-sc-1ymowfn-1.cbiTXp > div.styles__Container-sc-1eazm0o-0.bqplEK > div > div > div:nth-child(2) > form > div.styles__Resume-sc-1eazm0o-16.gkfRZt > ul.styles__ResumeGroup-sc-1eazm0o-17.fIJSGF > li.styles__ResumeItem-sc-1eazm0o-18.fipdGk > div:nth-child(2) > p > span")
-    
+      // const spanAsk = document.querySelector("#__next > div.styles__Container-sc-18h7krm-0.beooTR > div.styles__Grid-sc-1ymowfn-0.iSncTr > div.styles__Box-sc-1ymowfn-1.cbiTXp > div.styles__Container-sc-1eazm0o-0.bqplEK > div > div > div:nth-child(1) > form > div.styles__Resume-sc-1eazm0o-16.gkfRZt > ul.styles__ResumeGroup-sc-1eazm0o-17.fIJSGF > li.styles__ResumeItem-sc-1eazm0o-18.fipdGk > div:nth-child(2) > p > span")
+      // const spanBid = document.querySelector("#__next > div.styles__Container-sc-18h7krm-0.beooTR > div.styles__Grid-sc-1ymowfn-0.iSncTr > div.styles__Box-sc-1ymowfn-1.cbiTXp > div.styles__Container-sc-1eazm0o-0.bqplEK > div > div > div:nth-child(2) > form > div.styles__Resume-sc-1eazm0o-16.gkfRZt > ul.styles__ResumeGroup-sc-1eazm0o-17.fIJSGF > li.styles__ResumeItem-sc-1eazm0o-18.fipdGk > div:nth-child(2) > p > span")
+      const spanBid = document.querySelector("li.styles__ResumeItem-sc-30072451-18.gQoMDD > div:nth-child(2) > p > span")
+      const spanAsk = document.querySelector("div.list__Overflow-sc-8e1398e6-5.fRsSDF > ul > li:nth-child(32) > div:nth-child(3) > p > span")
+
       return { 
         spread: spanSpread != null ? spanSpread.innerHTML : '',
         ask: spanAsk != null ? spanAsk.innerHTML : '',
@@ -69,7 +71,7 @@ page.on('request', request => {
     })
     await browser.close();
   return {
-    "spread": pageContent.spread ,
+    "spread": calcSpread(pageContent.ask,pageContent.bid).replace('.',',') ,
     // "Último Negócio": pageContent.lastTrade,
     "ask": pageContent.ask,
     "bid": pageContent.bid,
