@@ -1,11 +1,16 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra')
 const { Telegraf } = require('telegraf');
+// Add stealth plugin and use defaults (all tricks to hide puppeteer usage)
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 const express = require('express');
 const app = express();
 
 const ip = process.env.IP || '0.0.0.0';
 const port = process.env.PORT || 8080;
+const url = 'https://www.liqi.com.br/exchange';
 
 //Catches requests made to localhost:3000/
 app.get('/', (req, res) => res.send('Hello World!'));
@@ -39,7 +44,7 @@ function calcSpread(ask, bid){
   });  
   const page = await browser.newPage();
   const proxy = 'https://cors-anywhere.herokuapp.com/';
-  const url = 'https://www.liqi.com.br/exchange';
+ 
 
 //turns request interceptor on
 await page.setRequestInterception(true);
